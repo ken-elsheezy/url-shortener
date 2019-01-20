@@ -22,7 +22,7 @@ class GeneralInfo extends Component {
 
   render() {
     return (
-      <div className="col-md-4">
+      <div className="col-md-4" style={{textAlign:'center'}}>
         <h2>General Info</h2>
         {this.props.general.loading && <Loader />}
 
