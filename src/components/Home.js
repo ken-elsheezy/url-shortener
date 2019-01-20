@@ -20,11 +20,12 @@ class Home extends Component {
 
     this.handleShortenTask = this.handleShortenTask.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.clear = this.clear.bind(this);
   }
 
   async handleShortenTask(){
+    await this.props.actions.resetChildComponent();
     await this.props.actions.beforeFetchResult();
-    console.log('Long URL',this.state.long_url);
     this.props.actions.getShortenedUrl(this.state.long_url);
   }
 
@@ -32,6 +33,10 @@ class Home extends Component {
     this.setState({
         long_url: e.target.value 
     });
+  }
+
+  clear(){
+    this.props.actions.resetChildComponent();  
   }
 
   render() {
@@ -60,33 +65,30 @@ class Home extends Component {
                 </div>
             </div>
 
-            {this.props.home.loading &&
-            <Loader />}
+            {this.props.home.loading && <Loader />}
             
             {this.props.home.resource.link &&
             <div  className="row">
                 <div className="col-md-offset-2 col-md-8">
                     <p style={{textAlign:'center', marginTop:20}}>
                         <img src="/extras/image/check.png" style={{width:25}} /> 
-                        <a style={{paddingLeft:10}}>{this.props.home.resource.link}</a>
+                        <a style={{paddingLeft:10}}>{this.props.home.resource.link}</a> ({this.props.home.resource.long_url})
                         <br />
                         <br />
-                        <button type="button" className="btn btn-warning" style={{marginRight:5}}>Clear</button>
+                        <button type="button" onClick={() => this.clear()} className="btn btn-warning" style={{marginRight:5}}>Clear Stats</button>
                         <a class="btn btn-success btn-lg" href="#" role="button">Save Link &raquo;</a>
                     </p>
                     
                 </div>
-            </div>
-            }
-
+            </div>}
 
           </div>
         </div>
 
         <div className="container col-md-offset-2 col-md-8">
-            <div className="row">
+            <div className="row" style={{backgroundColor:'#ffffff', borderRadius:10,}}>
                 {this.props.home.resource.link ?
-                <Analytics bitlink={this.props.home.resource.link}/>:
+                <Analytics bitlink={this.props.home.resource.id}/>:
                 <Placeholder /> 
                 }   
             </div>

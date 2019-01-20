@@ -6,7 +6,7 @@ const Placeholder = () => {
     return (
 
         <div className="col-md-12">
-            <p style={{padding:'10%', backgroundColor:'#ffffff', borderRadius:10, textAlign:'center'}}>
+            <p style={{padding:'10%', textAlign:'center'}}>
                 insert a valid url above to generate analytics for the shortened link   
             </p>      
         </div>    
