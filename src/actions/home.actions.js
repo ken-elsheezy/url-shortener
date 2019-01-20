@@ -6,9 +6,17 @@ import {
 import { 
     BEFORE_RESULT,
     SHORTEN_URL,
+    RESET,
     ERROR 
 } from './types';
 
+
+
+export const resetChildComponent = () => {
+    return {
+        type:RESET
+    }
+}
 
 export const beforeFetchResult = () => {
     return {

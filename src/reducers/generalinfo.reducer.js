@@ -1,13 +1,13 @@
 import { 
-    BEFORE_RESULT,
-    SHORTEN_URL,
-    ERROR,
-    RESET 
+    BEFORE_GENERAL_ANALYTICS_RESULT,
+    GENERAL_ANALYTICS,
+    GENERAL_ANALYTICS_ERROR
 } from '../actions/types';
+
 
 const initialState = {
     loading: false,
-    resource: {},
+    analytics: {},
     error_message: null
 }
 
@@ -15,16 +15,14 @@ const initialState = {
 export default function(state = initialState, action){
 
     switch(action.type){
-        case RESET:
-            return Object.assign({}, state, {resource: {}});
-        case BEFORE_RESULT:
+        case BEFORE_GENERAL_ANALYTICS_RESULT:
             return Object.assign({}, state, {loading: true});
-        case SHORTEN_URL: 
+        case GENERAL_ANALYTICS: 
             return Object.assign({}, state, {
                 loading: false, 
-                resource: action.payload
+                analytics: action.payload
             });
-        case ERROR:
+        case GENERAL_ANALYTICS_ERROR:
             return Object.assign({}, state, {
                 loading: false, 
                 error_message: action.payload
@@ -32,4 +30,4 @@ export default function(state = initialState, action){
         default:
           return state;
     }
-  }
+}
