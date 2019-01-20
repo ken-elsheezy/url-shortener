@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as Actions from '../actions';
+import * as Actions from '../actions/home.actions';
 
 import Header from './Header';
 import Footer from './Footer';
 import Loader from './Loader';
+import Placeholder from './Placeholder';
+import Analytics from './Analytics';
 
 class Home extends Component {
 
@@ -77,56 +79,19 @@ class Home extends Component {
             </div>
             }
 
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-offset-2 col-md-8">
-                        <div className="col-md-4">
-                            <h2>General Info</h2>
-                            <p><small>Donec id elit non mi porta gravida at eget metus. Fusce dapibus </small></p>
-                            <p><a className="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-                        </div>
-                        <div className="col-md-4">
-                            <h2>Clicks Summary</h2>
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                            <p><a className="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-                        </div>
-                        <div className="col-md-4">
-                            <h2>Analytics 3</h2>
-                            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                            <p><a className="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-    
-            
 
           </div>
         </div>
 
-        <div className="container">
-          <div className="row">
-            <div className="col-md-4">
-              <h2>General Info</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a className="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        <div className="container col-md-offset-2 col-md-8">
+            <div className="row">
+                {this.props.home.resource.link ?
+                <Analytics bitlink={this.props.home.resource.link}/>:
+                <Placeholder /> 
+                }   
             </div>
-            <div className="col-md-4">
-              <h2>Clicks Summary</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a className="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-          </div>
-            <div className="col-md-4">
-              <h2>Analytics 3</h2>
-              <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-              <p><a className="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div>
-          </div>
-
-          <hr />
-
-          <Footer />
+            <hr />
+            <Footer />
         </div>
 
       </div>
