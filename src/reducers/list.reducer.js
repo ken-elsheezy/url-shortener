@@ -1,14 +1,12 @@
 import { 
-    BEFORE_RESULT,
-    SHORTEN_URL,
-    ERROR,
-    RESET,
-    PERSIST 
+    LIST_ERROR,
+    RETRIEVE,
+    BEFORE_LIST_RESULT,
 } from '../actions/types';
 
 const initialState = {
     loading: false,
-    resource: {},
+    array: [],
     message: null,
     msg_type: '',
     display: false
@@ -18,26 +16,18 @@ const initialState = {
 export default function(state = initialState, action){
 
     switch(action.type){
-        case RESET:
-            return Object.assign({}, state, {resource: {}, display: false});
-        case BEFORE_RESULT:
+        case BEFORE_LIST_RESULT:
             return Object.assign({}, state, {loading: true, display: false});
-        case SHORTEN_URL: 
+        case RETRIEVE: 
             return Object.assign({}, state, {
                 loading: false, 
-                resource: action.payload
+                array: action.payload
             });
-        case ERROR:
+        case LIST_ERROR:
             return Object.assign({}, state, {
                 loading: false, 
                 message: action.payload,
                 msg_type: 'failed',
-                display: true
-            }); 
-        case PERSIST:
-            return Object.assign({}, state, {
-                msg_type: action.payload.status,
-                message: action.payload.msg,
                 display: true
             });    
         default:

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
 
-const Placeholder = () => {
+const Placeholder = (props) => {
 
     return (
 
         <div className="col-md-12">
-            <p style={{padding:'10%', textAlign:'center'}}>
-                insert a valid url above to generate analytics for the shortened link   
+            <p style={{padding:'10%',backgroundColor:'#fff', textAlign:'center'}}>
+                {props.text}  
             </p>      
         </div>    
           

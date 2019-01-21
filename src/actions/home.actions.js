@@ -32,27 +32,30 @@ export const beforeFetchResult = () => {
 }
 
 export const getShortenedUrl = (longURL) => {
+    if(longURL === ""){
+        return {type:ERROR, payload: 'Insert a url'};
+    }else{
+        return async function(dispatch){
+            try{
 
-    return async function(dispatch){
-        try{
+                let headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + TOKEN 
+                }  
 
-            let headers = {
-                'Content-Type': 'application/json',
-                'Authorization': "Bearer " + TOKEN 
-            }  
+                const response = await  axios.post(
+                    API_BASE_URL+'shorten', 
+                    {long_url : longURL}, 
+                    {headers: headers}
+                );
 
-            const response = await  axios.post(
-                API_BASE_URL+'shorten', 
-                {long_url : longURL}, 
-                {headers: headers}
-            );
+                console.log(response);
 
-            console.log(response);
+                dispatch({type:SHORTEN_URL, payload: response.data});
 
-            dispatch({type:SHORTEN_URL, payload: response.data});
-
-        }catch(e){
-            dispatch({type:ERROR, payload: e});
+            }catch(e){
+                dispatch({type:ERROR, payload: e});
+            }
         }
     }
 
@@ -71,16 +74,4 @@ export const persistResource = (resource) => {
     }
     
     
-}
-
-export const retrieveResources = () => {
-
-    return async function(dispatch){
-        try{
-            const response = getLinks();
-            dispatch({type:RETRIEVE, payload: response.result});
-        }catch(e){
-            dispatch({type:ERROR, payload: e});
-        }
-    }
 }

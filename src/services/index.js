@@ -28,7 +28,7 @@ export const addLink = (linkObject) => {
 
         if(index === -1){
             //dosent exist so create one
-            jStorage.push(linkObject);
+            jStorage.push({id:id, value:value});
             localStorage.setItem('store', JSON.stringify(jStorage));
             return {
                 status:'success', 
