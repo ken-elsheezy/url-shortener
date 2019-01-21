@@ -1,5 +1,5 @@
 INTRODUCTION
-This is a URL Shortening App Build With ReactJS
+This is a URL Shortening App Built With ReactJS
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

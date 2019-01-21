@@ -21,6 +21,7 @@ class Home extends Component {
     this.handleShortenTask = this.handleShortenTask.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.clear = this.clear.bind(this);
+    this.persistResource = this.persistResource.bind(this);
   }
 
   async handleShortenTask(){
@@ -39,6 +40,14 @@ class Home extends Component {
     this.props.actions.resetChildComponent();  
   }
 
+  persistResource(fullObject){
+    const data = {
+      long_url: fullObject.long_url,
+      short_url: fullObject.id
+    };
+    this.props.actions.persistResource(data);
+  }
+
   render() {
     return (
       <div>
@@ -55,9 +64,17 @@ class Home extends Component {
             <br />
 
             <div  className="row">
+
+                <div className="col-md-offset-2 col-md-8" style={{display:(this.props.home.display)?'block': 'none'}}>
+                  <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>{this.props.home.msg_type}!</strong> {this.props.home.message}
+                  </div>
+                </div>
+
                 <div className="col-md-offset-2 col-md-8">
                   <div className="col-md-9" style={{paddingRight:1}}>
-                      <input type="text" placeholder="Insert url to shorten..." onChange={this.handleChange} className="form-control" />
+                      <input type="text" placeholder="Insert url to shorten... e.g http://google.com" onChange={this.handleChange} className="form-control" />
                   </div>
                   <div className="col-md-3" style={{paddingLeft:1}}>
                     <button type="button" className="btn btn-primary" onClick={() => this.handleShortenTask()}>Shorten &raquo;</button>
@@ -70,13 +87,14 @@ class Home extends Component {
             {this.props.home.resource.link &&
             <div  className="row">
                 <div className="col-md-offset-2 col-md-8">
+
                     <p style={{textAlign:'center', marginTop:20}}>
                         <img src="/extras/image/check.png" style={{width:25}} /> 
                         <a style={{paddingLeft:10}}>{this.props.home.resource.link}</a> ({this.props.home.resource.long_url})
                         <br />
                         <br />
                         <button type="button" onClick={() => this.clear()} className="btn btn-warning" style={{marginRight:5}}>Clear Stats</button>
-                        <a class="btn btn-success btn-lg" href="#" role="button">Save Link &raquo;</a>
+                        <a class="btn btn-success btn-lg" onClick={() => this.persistResource(this.props.home.resource)} href="#" role="button">Save Link &raquo;</a>
                     </p>
                     
                 </div>

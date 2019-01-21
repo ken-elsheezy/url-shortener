@@ -7,8 +7,14 @@ import {
     BEFORE_RESULT,
     SHORTEN_URL,
     RESET,
-    ERROR 
+    ERROR,
+    PERSIST,
+    RETRIEVE 
 } from './types';
+import {
+    addLink, 
+    getLinks
+} from '../services';
 
 
 
@@ -52,10 +58,29 @@ export const getShortenedUrl = (longURL) => {
 
 }
 
-export const persistResource = () => {
+export const persistResource = (resource) => {
     //write a service to accept & save the persisted resource
+    //console.log('Consoling here: ', resource);
+    return async function(dispatch){
+        try{
+            const response = await addLink(resource);
+            dispatch({type:PERSIST, payload: response});
+        }catch(e){
+            dispatch({type:ERROR, payload: e});
+        }
+    }
+    
+    
 }
 
-export const viewAllResources = () => {
-    //write a service to view all the persisted resources
+export const retrieveResources = () => {
+
+    return async function(dispatch){
+        try{
+            const response = getLinks();
+            dispatch({type:RETRIEVE, payload: response.result});
+        }catch(e){
+            dispatch({type:ERROR, payload: e});
+        }
+    }
 }
