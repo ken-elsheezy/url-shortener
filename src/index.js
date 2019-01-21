@@ -12,6 +12,6 @@ import * as serviceWorker from './serviceWorker';
 export const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 ReactDom.render(<Provider store={store}><App /></Provider>,
-                document.querySelector('#root'));
+                document.querySelector('#root') || document.createElement('div'));
 
 serviceWorker.unregister();
