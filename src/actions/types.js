@@ -2,6 +2,8 @@ export const BEFORE_RESULT = 'BEFORE_RESULT';
 export const SHORTEN_URL = 'SHORTEN_URL';
 export const ERROR = 'ERROR';
 export const RESET = 'RESET';
+export const PERSIST = 'PERSIST';
+export const RETRIEVE = 'RETRIEVE';
 
 
 export const BEFORE_CLICK_ANALYTICS_RESULT = 'BEFORE_CLICK_ANALYTICS_RESULT';
