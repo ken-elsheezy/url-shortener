@@ -10,7 +10,9 @@ import {
 } from './types';
 
 
-
+/**
+ * This action goes ahead to trigger the loader
+ */
 export const beforeFetchResult = () => {
     return {
         type:BEFORE_GENERAL_ANALYTICS_RESULT
@@ -18,6 +20,12 @@ export const beforeFetchResult = () => {
 }
 
 
+/**
+ * This function accepts the bitlink parameter  
+ * which it inturn uses to obtain general analytics of the 
+ * bitlink
+ * @param  bitlink (String)
+ */
 export const getGeneralAnalytics = (bitlink) => {
     return async function(dispatch){
         try{
@@ -33,7 +41,7 @@ export const getGeneralAnalytics = (bitlink) => {
             console.log('General Info Response: ', response.data);    
             dispatch({type: GENERAL_ANALYTICS, payload:response.data});
         }catch(e){
-            dispatch({type: GENERAL_ANALYTICS_ERROR , payload:e});
+            dispatch({type: GENERAL_ANALYTICS_ERROR , payload:e.message});
         }
     }
 }

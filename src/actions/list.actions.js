@@ -8,6 +8,9 @@ import {
 } from '../services';
 
 
+/**
+ * Goes ahead to activate the loader
+ */
 export const beforeFetchResult = () => {
     return {
         type:BEFORE_LIST_RESULT, 
@@ -15,6 +18,11 @@ export const beforeFetchResult = () => {
     }
 }
 
+
+/**
+ * This retrieves all the persisted/stored
+ * bitlinks
+ */
 export const retrieveResources = () => {
 
     return async function(dispatch){
@@ -22,7 +30,7 @@ export const retrieveResources = () => {
             const response = getLinks();
             dispatch({type:RETRIEVE, payload: response.result});
         }catch(e){
-            dispatch({type:LIST_ERROR, payload: e});
+            dispatch({type:LIST_ERROR, payload: e.message});
         }
     }
 }
