@@ -8,6 +8,11 @@ import Card from './Card';
 import Loader from './Loader';
 import Placeholder from './Placeholder';
 
+
+/**
+ * This is the component that displays all
+ * the saved bitlinks as a list
+ */
 class List extends Component {
 
   constructor(props){
@@ -27,8 +32,6 @@ class List extends Component {
     return (
       <div>
         <Header />
-        
-        
           <div className="container col-md-offset-2 col-md-8" style={{marginTop:100}}>
               <h2>Saved Links</h2>
               {(this.props.list.array.length === 0) &&

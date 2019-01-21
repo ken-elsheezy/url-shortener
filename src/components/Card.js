@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
 
+/**
+ * This component displays each saved bitlink 
+ * @param  props 
+ */
 const Card = (props) => {
 
     return (
