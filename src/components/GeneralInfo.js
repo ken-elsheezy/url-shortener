@@ -5,7 +5,9 @@ import * as Actions from '../actions/generalinfo.actions';
 import Loader from './Loader';
 
 
-
+/**
+ * This component is used to display general analytics
+ */
 class GeneralInfo extends Component {
 
   constructor(props){

@@ -4,7 +4,9 @@ import { bindActionCreators } from 'redux';
 import * as Actions from '../actions/clicks.actions';
 import Loader from './Loader';
 
-
+/**
+ * This component is used to display click analytics
+ */
 class Clicks extends Component {
 
   constructor(props){

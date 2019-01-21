@@ -3,7 +3,10 @@ import Clicks from './Clicks';
 import GeneralInfo from './GeneralInfo';
 
 
-
+/**
+ * This component displays the entire analytics section
+ * @param props 
+ */
 const Analytics = (props) =>{
 
     return (
@@ -14,6 +17,5 @@ const Analytics = (props) =>{
     );
   
 }
-
 
 export default Analytics;
