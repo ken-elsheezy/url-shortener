@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from './actions';
 
 import Home from './components/Home';
+import List from './components/List';
 
 class App extends Component {
   
@@ -13,6 +14,8 @@ class App extends Component {
           <div>
             <Route exact={true} path="/" render={(props) =>
                   <Home  /> } />
+            <Route exact={true} path="/saved" render={(props) =>
+                  <List  /> } />      
           </div>
         </BrowserRouter>
     );

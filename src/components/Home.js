@@ -65,12 +65,13 @@ class Home extends Component {
 
             <div  className="row">
 
-                <div className="col-md-offset-2 col-md-8" style={{display:(this.props.home.display)?'block': 'none'}}>
-                  <div class="alert alert-success alert-dismissible">
+                {(this.props.home.display) &&
+                <div className="col-md-offset-2 col-md-8">
+                  <div class={(this.props.home.msg_type ==='success')?"alert alert-success alert-dismissible":"alert alert-danger alert-dismissible"}>
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <strong>{this.props.home.msg_type}!</strong> {this.props.home.message}
                   </div>
-                </div>
+                </div>}
 
                 <div className="col-md-offset-2 col-md-8">
                   <div className="col-md-9" style={{paddingRight:1}}>
@@ -107,7 +108,7 @@ class Home extends Component {
             <div className="row" style={{backgroundColor:'#ffffff', borderRadius:10,}}>
                 {this.props.home.resource.link ?
                 <Analytics bitlink={this.props.home.resource.id}/>:
-                <Placeholder /> 
+                <Placeholder text="insert a valid url above to generate analytics for the shortened link " /> 
                 }   
             </div>
             <hr />

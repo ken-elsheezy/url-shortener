@@ -12,8 +12,12 @@ const Header = () => {
                     <span className="icon-bar"></span>
                     <span className="icon-bar"></span>
                     </button>
-                    <a className="navbar-brand" href="#">Kenvin's URL Shortener</a>
+                    <a className="navbar-brand" href="/">Kenvin's URL Shortener</a>
                 </div>
+                <ul className="nav navbar-nav">
+                    <li className="active"><a href="/">Home</a></li>
+                    <li><a href="/saved">Saved Links</a></li>
+                </ul>
             </div>
         </nav>
     );
