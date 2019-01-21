@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions/home.actions';
-
 import Header from './Header';
 import Footer from './Footer';
 import Loader from './Loader';
+import ButtonLoader from './ButtonLoader';
 import Placeholder from './Placeholder';
 import Analytics from './Analytics';
 
+
+/**
+ * This is the component that renders first (Homepage)
+ */
 class Home extends Component {
 
   constructor(props){
@@ -40,13 +44,17 @@ class Home extends Component {
     this.props.actions.resetChildComponent();  
   }
 
-  persistResource(fullObject){
+  async persistResource(fullObject){
+    
     const data = {
       long_url: fullObject.long_url,
       short_url: fullObject.id
     };
+    await this.props.actions.activateButtonLoader();
     this.props.actions.persistResource(data);
+    
   }
+  
 
   render() {
     return (
@@ -78,10 +86,14 @@ class Home extends Component {
                       <input type="text" placeholder="Insert url to shorten... e.g http://google.com" onChange={this.handleChange} className="form-control" />
                   </div>
                   <div className="col-md-3" style={{paddingLeft:1}}>
-                    <button type="button" className="btn btn-primary" onClick={() => this.handleShortenTask()}>Shorten &raquo;</button>
+                    <button type="button" className="btn btn-primary" onClick={() => this.handleShortenTask()}>
+                      Shorten &raquo;
+                    </button>
                   </div>
                 </div>
+
             </div>
+
 
             {this.props.home.loading && <Loader />}
             
@@ -95,7 +107,10 @@ class Home extends Component {
                         <br />
                         <br />
                         <button type="button" onClick={() => this.clear()} className="btn btn-warning" style={{marginRight:5}}>Clear Stats</button>
-                        <a class="btn btn-success btn-lg" onClick={() => this.persistResource(this.props.home.resource)} href="#" role="button">Save Link &raquo;</a>
+                        <a class="btn btn-success btn-lg" onClick={() => this.persistResource(this.props.home.resource)}  role="button">
+                          {this.props.home.buttonloader && <ButtonLoader />}
+                          Save Link &raquo;
+                        </a>
                     </p>
                     
                 </div>

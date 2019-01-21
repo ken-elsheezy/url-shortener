@@ -10,7 +10,9 @@ import {
 } from './types';
 
 
-
+/**
+ * This action goes ahead to trigger the loader
+ */
 export const beforeFetchResult = () => {
     return {
         type:BEFORE_CLICK_ANALYTICS_RESULT
@@ -18,6 +20,12 @@ export const beforeFetchResult = () => {
 }
 
 
+/**
+ * This function accepts a bitlink string
+ * which it in turn uses to obtain Click analytics.
+ * 
+ * @param bitlink (String)
+ */
 export const getClicksAnalytics = (bitlink) => {
     return async function(dispatch){
         try{
@@ -30,10 +38,10 @@ export const getClicksAnalytics = (bitlink) => {
 
             const response = await axios.get(
                 API_BASE_URL + 'bitlinks/' + bitlink + '/clicks/summary', header);
-            console.log('Clicks Components Response: ', response.data); 
+
             dispatch({type:CLICK_ANALYTICS, payload:response.data});
         }catch(e){
-            dispatch({type: CLICK_ANALYTICS_ERROR , payload:e});
+            dispatch({type: CLICK_ANALYTICS_ERROR , payload:e.message});
         }
     }
 }

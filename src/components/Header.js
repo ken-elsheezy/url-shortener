@@ -1,6 +1,9 @@
 import React from 'react';
 
 
+/**
+ * This component displays the Navbar 
+ */
 const Header = () => {
     return(
         <nav className="navbar navbar-inverse navbar-fixed-top">

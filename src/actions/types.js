@@ -4,6 +4,7 @@ export const ERROR = 'ERROR';
 export const RESET = 'RESET';
 export const PERSIST = 'PERSIST';
 export const RETRIEVE = 'RETRIEVE';
+export const BUTTON_LOADER = 'BUTTON_LOADER';
 
 
 export const BEFORE_CLICK_ANALYTICS_RESULT = 'BEFORE_CLICK_ANALYTICS_RESULT';

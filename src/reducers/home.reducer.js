@@ -3,7 +3,8 @@ import {
     SHORTEN_URL,
     ERROR,
     RESET,
-    PERSIST 
+    PERSIST,
+    BUTTON_LOADER 
 } from '../actions/types';
 
 const initialState = {
@@ -11,17 +12,30 @@ const initialState = {
     resource: {},
     message: null,
     msg_type: '',
-    display: false
+    display: false,
+    buttonloader: false
+
 }
 
 
 export default function(state = initialState, action){
 
     switch(action.type){
+        case BUTTON_LOADER:
+            return Object.assign({}, state, {
+                buttonloader: true,
+                display: false
+            });
         case RESET:
-            return Object.assign({}, state, {resource: {}, display: false});
+            return Object.assign({}, state, {
+                resource: {}, 
+                display: false
+            });
         case BEFORE_RESULT:
-            return Object.assign({}, state, {loading: true, display: false});
+            return Object.assign({}, state, {
+                loading: true, 
+                display: false
+            });
         case SHORTEN_URL: 
             return Object.assign({}, state, {
                 loading: false, 
@@ -36,9 +50,11 @@ export default function(state = initialState, action){
             }); 
         case PERSIST:
             return Object.assign({}, state, {
+                loading: false,
                 msg_type: action.payload.status,
                 message: action.payload.msg,
-                display: true
+                display: true,
+                buttonloader: false
             });    
         default:
           return state;

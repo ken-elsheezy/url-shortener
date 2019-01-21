@@ -1,19 +1,10 @@
 
-const checkStore = () => {
-    if(!localStorage.getItem('store')){
-        localStorage.setItem('store', '[]');
-    }
-    return;
-}
 
-
-
-const validate = (linkObject) =>{
-    return linkObject.long_url && linkObject.short_url;
-}
-
-
-
+/**
+ * This function acts as a service to store 
+ * a bitlink object in localStorage
+ * @param linkObject (Object) 
+ */
 export const addLink = (linkObject) => {
     let id = linkObject.long_url;
     let value = linkObject.short_url;
@@ -44,13 +35,17 @@ export const addLink = (linkObject) => {
     }else{
         return {
             status:'failed', 
-            msg:'invalid links object provided, ensure you are passing a value'
+            msg:'invalid links object provided, ensure you '+
+            +'are passing a valid link eg https://google.com'
         };
     }
 }
 
 
-
+/**
+ * This function acts as a service, it
+ * returns all the saved bitlinks in an array
+ */
 export const getLinks = () => {
 
     checkStore ();
@@ -62,4 +57,26 @@ export const getLinks = () => {
         msg:'Resources retrieved successfully',
         result: jStorage
     };
+}
+
+
+/**
+ * This initilizes the localStorage store
+ * if not set to prevent null or undefined
+ */
+const checkStore = () => {
+    if(!localStorage.getItem('store')){
+        localStorage.setItem('store', '[]');
+    }
+    return;
+}
+
+
+/**
+ * This validates if a bitlink object
+ * is valid for storage
+ * @param linkObject (Object)
+ */
+const validate = (linkObject) =>{
+    return linkObject.long_url && linkObject.short_url;
 }
